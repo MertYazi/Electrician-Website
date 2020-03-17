@@ -1,0 +1,121 @@
+.navbar-fade {
+	z-index: 1000;
+	width: 100%;
+	background-color: rgb(0, 0, 0);
+	opacity: 0.70;
+}
+.navbar-margin-right {
+	margin-right: 5%;
+}
+.profile-container {
+  position: relative;
+}
+.profile-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #3e4f4f;
+}
+.profile-container:hover .profile-overlay {
+  opacity: 0.8;
+}
+.profile-text {
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.social-padding-small {
+	padding-top: 5%;
+}
+.social-padding-large {
+  padding-top: 10%;
+}
+.generation-padding {
+	padding-top: 7%;
+	padding-bottom: 7%;
+}
+.references-padding {
+	padding-top: 40%;
+}
+.fa-instagram:hover,
+.fa-facebook-square:hover,
+.fa-twitter:hover,
+.fa-google-plus-g:hover,
+.fa-linkedin-in:hover {
+    opacity: 0.1;
+}
+.fa-chevron-left,
+.fa-chevron-right{
+	color: #212529;
+}
+.help-image {
+	max-width: 200px;
+	max-height: 200px;
+}
+.help-text {
+	max-width: 540px;
+}
+.text-white-50 a {
+	color: rgba(255,255,255,.5)!important;
+}
+.carousel-home img {
+  height: 100vh;
+}
+.carousel-text {
+  height: 20vh;
+}
+.cover-image {
+  height: 50vh;
+}
+.list-group .list-group-item {
+	padding-left: 8px;
+	padding-right: 0px;
+}
+.services-body .card .card-body {
+	padding-top: 12px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 12px;
+}
+.service-image {
+	height: 45vh;
+}
+.mail-text-size {
+	font-size: 14px;
+}
+.social-icon-size {
+	font-size: 36px;
+}
+.scroll-button {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #abaaad;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 18px;
+}
+.scroll-button:hover {
+  background-color: #555;
+}
