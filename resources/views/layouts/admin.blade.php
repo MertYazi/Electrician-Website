@@ -19,7 +19,7 @@
 <body>
 
 	<div class="container-fluid px-0 py-0">
-		<nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-fade py-3">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-fade navbar-dark py-3">
 
 			<a class="navbar-brand" href="/">COMPETENT ELECTRICIAN</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -29,18 +29,66 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav ml-auto navbar-margin-right">
-		      <li class="nav-item active"><a class="nav-link" href="/">HOMEPAGE <span class="sr-only">(current)</span></a></li>
-		      <li class="nav-item"><a class="nav-link" href="/services">SERVICES</a></li>
-		      <li class="nav-item"><a class="nav-link" href="/references">REFERENCES</a></li>
-		      <li class="nav-item"><a class="nav-link" href="/about">ABOUT</a></li>
-		      <li class="nav-item"><a class="nav-link" href="/contact">CONTACT</a></li>
+		      <li class="nav-item active"><a class="nav-link" href="/admin/site">SITE <span class="sr-only">(current)</span></a></li>
+					<li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          HOMEPAGE
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="/admin/slides">Slides</a>
+		          <a class="dropdown-item" href="/admin/generations">Generations</a>
+		          <a class="dropdown-item" href="/admin/team">Team</a>
+							<a class="dropdown-item" href="/admin/help">Help</a>
+		        </div>
+		      </li>
+		      <li class="nav-item"><a class="nav-link" href="/admin/services">SERVICES</a></li>
+		      <li class="nav-item"><a class="nav-link" href="/admin/references">REFERENCES</a></li>
+		      <li class="nav-item"><a class="nav-link" href="/admin/about">ABOUT</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/contact">CONTACT</a></li>
 		    </ul>
 		  </div>
 
 		</nav>
 	</div>
 
-@yield('content')
+  <div class="container-fluid px-5 py-5">
+
+  	<div class="container-fluid py-5">
+  		<h3 class="display-4 text-center">Admin Panel</h3>
+  	</div>
+
+  	<div class="row pt-4">
+
+  		<div class="d-none d-lg-block col-lg-3">
+
+  			<h4 class="px-2 pb-2">Contents</h4>
+  			<ul class="list-group list-group-flush pr-4">
+  			  <a href="/admin/site"><li class="list-group-item">Site</li></a>
+					<a href="/admin/slides"><li class="list-group-item">Slides</li></a>
+	  			<a href="/admin/generations"><li class="list-group-item">Generations</li></a>
+					<a href="/admin/team"><li class="list-group-item">Team</li></a>
+	  			<a href="/admin/help"><li class="list-group-item">Help</li></a>
+  			  <a href="/admin/services"><li class="list-group-item">Services</li></a>
+  			  <a href="/admin/references"><li class="list-group-item">References</li></a>
+  			  <a href="/admin/about"><li class="list-group-item">About</li></a>
+          <a href="/admin/contact"><li class="list-group-item">Contact</li></a>
+  			</ul>
+
+  		</div>
+
+  		<div class="col-lg-9">
+
+  			<div class="justify-content-center">
+
+  			@yield('content')
+
+  			</div>
+
+  		</div>
+
+  	</div>
+
+  </div>
 
 <footer class="page-footer font-small unique-color-dark bg-dark text-white-50 pt-2">
   <div class="container text-center text-md-left mt-5">
@@ -66,10 +114,10 @@
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
         <h6 class="text-uppercase font-weight-bold">LINKS</h6>
         <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto">
-        <p><a href="/">HOMEPAGE</a></p>
-        <p><a href="/services">SERVICES</a></p>
-        <p><a href="/references">REFERENCES</a></p>
-        <p><a href="/about">ABOUT</a></p>
+        <p><a href="/admin">HOMEPAGE</a></p>
+        <p><a href="/admin/services">SERVICES</a></p>
+        <p><a href="/admin/references">REFERENCES</a></p>
+        <p><a href="/admin/about">ABOUT</a></p>
       </div>
 
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
@@ -90,8 +138,6 @@
 
 </footer>
 
-<button onclick="topFunction()" class="scroll-button" id="scrollButton" title="Go to top"><i class="fas fa-chevron-up"></i></button>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -102,8 +148,6 @@ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0
 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script src="https://kit.fontawesome.com/91b4e4e316.js" crossorigin="anonymous"></script>
-
-<script src="{{ asset('js/scripts.js') }}"></script>
 
 </body>
 
