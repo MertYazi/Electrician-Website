@@ -12,21 +12,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
-Route::get('/individual-services', function () {
-    return view('individual_services');
-});
-Route::get('/references', function () {
-    return view('references');
-});
-Route::get('/services', function () {
-    return view('services');
-});
+
+Route::get('/', 'AppearanceController@index');
+Route::get('/about', 'AppearanceController@about');
+Route::get('/contact', 'AppearanceController@contact');
+Route::get('/individual-services', 'AppearanceController@individual_services');
+Route::get('/references', 'AppearanceController@references');
+Route::get('/services', 'AppearanceController@services');
+
+
+Route::resource('admin/site', 'SiteController');
+Route::resource('admin/services', 'ServiceController');
+Route::resource('admin/references', 'ReferenceController');
+Route::resource('admin/about', 'AboutController');
+Route::resource('admin/contact', 'ContactController');
+Route::resource('admin/help', 'HelpController');
+Route::resource('admin/generations', 'GenerationController');
+Route::resource('admin/team', 'TeamController');
+Route::resource('admin/slides', 'SlideController');
