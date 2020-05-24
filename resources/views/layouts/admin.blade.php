@@ -21,7 +21,7 @@
 	<div class="container-fluid px-0 py-0">
 		<nav class="navbar fixed-top navbar-expand-lg navbar-fade navbar-dark py-3">
 
-			<a class="navbar-brand" href="/">COMPETENT ELECTRICIAN</a>
+			<a class="navbar-brand" href="/admin/site">COMPETENT ELECTRICIAN</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -45,6 +45,23 @@
 		      <li class="nav-item"><a class="nav-link" href="/admin/references">REFERENCES</a></li>
 		      <li class="nav-item"><a class="nav-link" href="/admin/about">ABOUT</a></li>
           <li class="nav-item"><a class="nav-link" href="/admin/contact">CONTACT</a></li>
+					<li class="nav-item dropdown">
+							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+									{{ Auth::user()->name }} <span class="caret"></span>
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="{{ route('logout') }}"
+										 onclick="event.preventDefault();
+																	 document.getElementById('logout-form').submit();">
+											{{ __('Logout') }}
+									</a>
+
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+											@csrf
+									</form>
+							</div>
+					</li>
 		    </ul>
 		  </div>
 

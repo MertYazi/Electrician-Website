@@ -16,17 +16,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'AppearanceController@index');
 Route::get('/about', 'AppearanceController@about');
 Route::get('/contact', 'AppearanceController@contact');
-Route::get('/individual-services', 'AppearanceController@individual_services');
 Route::get('/references', 'AppearanceController@references');
 Route::get('/services', 'AppearanceController@services');
+Route::get('/individual-services', 'AppearanceController@individual_services');
 
+Auth::routes();
 
-Route::resource('admin/site', 'SiteController');
-Route::resource('admin/services', 'ServiceController');
-Route::resource('admin/references', 'ReferenceController');
-Route::resource('admin/about', 'AboutController');
-Route::resource('admin/contact', 'ContactController');
-Route::resource('admin/help', 'HelpController');
-Route::resource('admin/generations', 'GenerationController');
-Route::resource('admin/team', 'TeamController');
-Route::resource('admin/slides', 'SlideController');
+Route::resource('admin/site', 'SiteController')->middleware('auth');
+Route::resource('admin/services', 'ServiceController')->middleware('auth');
+Route::resource('admin/references', 'ReferenceController')->middleware('auth');
+Route::resource('admin/about', 'AboutController')->middleware('auth');
+Route::resource('admin/contact', 'ContactController')->middleware('auth');
+Route::resource('admin/help', 'HelpController')->middleware('auth');
+Route::resource('admin/generations', 'GenerationController')->middleware('auth');
+Route::resource('admin/team', 'TeamController')->middleware('auth');
+Route::resource('admin/slides', 'SlideController')->middleware('auth');
