@@ -70,11 +70,11 @@ class GenerationController extends Controller
      */
     public function update(Request $request, Generation $generation)
     {
-        $generation->text=$request['text'];
-        $generation->caption=$request['caption'];
-        if($request['image'] != null){
-        $generation->image=$request['image'];}
-        $generation->origin=$request['origin'];
+        $generation->generation_text=$request['generation_text'];
+        $generation->generation_caption=$request['generation_caption'];
+        if($request['generation_image'] != null){
+        $generation->generation_image=$request['generation_image'];}
+        $generation->generation_origin=$request['generation_origin'];
         $generation->save();
         return redirect('/admin/generations');
     }

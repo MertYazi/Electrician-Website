@@ -7,16 +7,16 @@
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <label for="caption"><b>Slide Caption</b></label>
-      <input type="text" class="form-control" id="caption" name="caption">
+      <label for="slide_caption"><b>Slide Caption</b></label>
+      <input type="text" class="form-control" id="slide_caption" name="slide_caption">
     </div>
     <div class="form-group col-md-12">
-      <label for="text"><b>Slide Text</b></label>
-      <textarea class="form-control" id="text" name="text" rows="3"></textarea>
+      <label for="slide_text"><b>Slide Text</b></label>
+      <textarea class="form-control" id="slide_text" name="slide_text" rows="3"></textarea>
     </div>
     <div class="form-group col-md-12">
-      <label for="image"><b>Slide Image</b></label>
-      <input type="file" class="form-control-file" id="image" name="image">
+      <label for="slide_image"><b>Slide Image</b></label>
+      <input type="file" class="form-control-file" id="slide_image" name="slide_image">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Create</button>

@@ -13,11 +13,11 @@ class CreateSiteTable extends Migration
      */
     public function up()
     {
-        Schema::create('site', function (Blueprint $table) {
+        Schema::create('sites', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('site_name');
-            $table->string('site_year');
-            $table->text('description');
+            $table->integer('site_year');
+            $table->text('site_description');
             $table->string('references_cover');
             $table->string('about_cover');
             $table->string('contact_cover');
@@ -38,6 +38,6 @@ class CreateSiteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('site');
+        Schema::dropIfExists('sites');
     }
 }

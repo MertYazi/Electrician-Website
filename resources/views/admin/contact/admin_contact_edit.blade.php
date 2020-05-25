@@ -12,44 +12,44 @@
       <textarea class="form-control" id="contact_text" name="contact_text" rows="3">{{ $contact->contact_text }}</textarea>
     </div>
     <div class="form-group col-md-12">
-      <label for="address_short"><b>Address Short</b></label>
-      <input type="text" class="form-control" id="address_short" name="address_short" value="{{ $contact->address_short }}">
+      <label for="contact_address_short"><b>Address Short</b></label>
+      <input type="text" class="form-control" id="contact_address_short" name="contact_address_short" value="{{ $contact->contact_address_short }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="address_long"><b>Address Long</b></label>
-      <input type="text" class="form-control" id="address_long" name="address_long" value="{{ $contact->address_long }}">
+      <label for="contact_address_long"><b>Address Long</b></label>
+      <input type="text" class="form-control" id="contact_address_long" name="contact_address_long" value="{{ $contact->contact_address_long }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="email"><b>Email</b></label>
-      <input type="email" class="form-control" id="email" name="email" value="{{ $contact->email }}">
+      <label for="contact_email"><b>Email</b></label>
+      <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ $contact->contact_email }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="telephone"><b>Phone</b></label>
-      <input type="text" class="form-control" id="telephone" name="telephone" value="{{ $contact->telephone }}">
+      <label for="contact_phone"><b>Phone</b></label>
+      <input type="text" class="form-control" id="contact_phone" name="contact_phone" value="{{ $contact->contact_phone }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="fax"><b>Fax</b></label>
-      <input type="text" class="form-control" id="fax" name="fax" value="{{ $contact->fax }}">
+      <label for="contact_fax"><b>Fax</b></label>
+      <input type="text" class="form-control" id="contact_fax" name="contact_fax" value="{{ $contact->contact_fax }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="facebook_link"><b>Facebook Link</b></label>
-      <input type="url" class="form-control" id="facebook_link" name="facebook_link" value="{{ $contact->facebook_link }}">
+      <label for="contact_facebook_link"><b>Facebook Link</b></label>
+      <input type="url" class="form-control" id="contact_facebook_link" name="contact_facebook_link" value="{{ $contact->contact_facebook_link }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="twitter_link"><b>Twitter Link</b></label>
-      <input type="url" class="form-control" id="twitter_link" name="twitter_link" value="{{ $contact->twitter_link }}">
+      <label for="contact_twitter_link"><b>Twitter Link</b></label>
+      <input type="url" class="form-control" id="contact_twitter_link" name="contact_twitter_link" value="{{ $contact->contact_twitter_link }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="googleplus_link"><b>Googleplus Link</b></label>
-      <input type="url" class="form-control" id="googleplus_link" name="googleplus_link" value="{{ $contact->googleplus_link }}">
+      <label for="contact_googleplus_link"><b>Googleplus Link</b></label>
+      <input type="url" class="form-control" id="contact_googleplus_link" name="contact_googleplus_link" value="{{ $contact->contact_googleplus_link }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="linkedin_link"><b>Linkedin Link</b></label>
-      <input type="url" class="form-control" id="linkedin_link" name="linkedin_link" value="{{ $contact->linkedin_link }}">
+      <label for="contact_linkedin_link"><b>Linkedin Link</b></label>
+      <input type="url" class="form-control" id="contact_linkedin_link" name="contact_linkedin_link" value="{{ $contact->contact_linkedin_link }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="instagram_link"><b>Instagram Link</b></label>
-      <input type="url" class="form-control" id="instagram_link" name="instagram_link" value="{{ $contact->instagram_link }}">
+      <label for="contact_instagram_link"><b>Instagram Link</b></label>
+      <input type="url" class="form-control" id="contact_instagram_link" name="contact_instagram_link" value="{{ $contact->contact_instagram_link }}">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Save Changes</button>

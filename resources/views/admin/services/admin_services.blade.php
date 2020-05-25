@@ -4,7 +4,7 @@
 
   @foreach($services as $service)
   <div class="form-inline">
-      <label for="title">{{ $service->title }}</label>
+      <label for="service_title">{{ $service->service_title }}</label>
       <a class="btn btn-success ml-4" href="/admin/services/{{ $service->id }}/edit" role="button">Edit</a>
       <form method="POST" action="/admin/services/{{ $service->id }}">
         @csrf

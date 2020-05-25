@@ -15,9 +15,9 @@ class CreateReferencesTable extends Migration
     {
         Schema::create('references', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('image');
-            $table->string('link');
+            $table->string('reference_title')->unique();
+            $table->string('reference_image');
+            $table->string('reference_link');
             $table->timestamps();
         });
     }

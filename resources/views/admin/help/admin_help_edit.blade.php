@@ -8,12 +8,12 @@
 
   <div class="form-row">
     <div class="form-group col-md-12">
-      <label for="caption"><b>Help Caption</b></label>
-      <input type="text" class="form-control" id="caption" name="caption" value="{{ $help->caption }}">
+      <label for="help_caption"><b>Help Caption</b></label>
+      <input type="text" class="form-control" id="help_caption" name="help_caption" value="{{ $help->help_caption }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="keywords"><b>Help Keywords</b></label>
-      <input type="text" class="form-control" id="keywords" name="keywords" value="{{ $help->keywords }}">
+      <label for="help_keywords"><b>Help Keywords</b></label>
+      <input type="text" class="form-control" id="help_keywords" name="help_keywords" value="{{ $help->help_keywords }}">
     </div>
     <div class="form-group col-md-12">
       <label for="decide_text"><b>Decide Text</b></label>

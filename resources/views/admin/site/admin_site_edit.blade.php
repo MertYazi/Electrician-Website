@@ -16,8 +16,8 @@
       <input type="number" class="form-control" id="site_year" name="site_year" value="{{ $site->site_year }}">
     </div>
     <div class="form-group col-md-12">
-      <label for="description"><b>Site Description</b></label>
-      <textarea class="form-control" id="description" name="description" rows="3">{{ $site->description }}</textarea>
+      <label for="site_description"><b>Site Description</b></label>
+      <textarea class="form-control" id="site_description" name="site_description" rows="3">{{ $site->site_description }}</textarea>
     </div>
     <div class="form-group col-md-12">
       <label for="references_caption"><b>References Caption</b></label>

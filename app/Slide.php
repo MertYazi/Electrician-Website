@@ -8,7 +8,7 @@ class Slide extends Model
 {
 
     protected $fillable = [
-        'caption', 'text', 'image',
+        'slide_caption', 'slide_text', 'slide_image',
     ];
 
 

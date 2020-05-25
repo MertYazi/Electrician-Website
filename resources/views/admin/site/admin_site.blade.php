@@ -11,7 +11,7 @@
       <label for="site_year"><b>Site Year:</b> {{ $site->site_year }}</label>
     </div>
     <div class="form-group col-md-12">
-      <label for="description"><b>Site Description:</b> {{ $site->description }}</label>
+      <label for="site_description"><b>Site Description:</b> {{ $site->site_description }}</label>
     </div>
     <div class="form-group col-md-12">
       <label for="references_caption"><b>References Caption:</b> {{ $site->references_caption }}</label>

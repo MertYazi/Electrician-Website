@@ -5,10 +5,10 @@
 <form>
   <div class="form-row">
     <div class="form-group col-md-12">
-      <label for="caption"><b>Help Caption:</b> {{ $help->caption }}</label>
+      <label for="help_caption"><b>Help Caption:</b> {{ $help->help_caption }}</label>
     </div>
     <div class="form-group col-md-12">
-      <label for="keywords"><b>Help Keywords:</b> {{ $help->keywords }}</label>
+      <label for="help_keywords"><b>Help Keywords:</b> {{ $help->help_keywords }}</label>
     </div>
     <div class="form-group col-md-12">
       <label for="decide_text"><b>Decide Text:</b> {{ $help->decide_text }}</label>

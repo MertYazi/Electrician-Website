@@ -72,7 +72,7 @@ class SiteController extends Controller
     {
         $site->site_name=$request['site_name'];
         $site->site_year=$request['site_year'];
-        $site->description=$request['description'];
+        $site->site_description=$request['site_description'];
         $site->references_caption=$request['references_caption'];
         if($request['references_cover'] != null){
         $site->references_cover=$request['references_cover'];}

@@ -4,7 +4,7 @@
 
   @foreach($references as $reference)
   <div class="form-inline">
-      <label for="title">{{ $reference->title }}</label>
+      <label for="reference_title">{{ $reference->reference_title }}</label>
       <a class="btn btn-success ml-4" href="/admin/references/{{ $reference->id }}/edit" role="button">Edit</a>
       <form method="POST" action="/admin/references/{{ $reference->id }}">
         @csrf

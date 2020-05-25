@@ -13,19 +13,19 @@ class CreateContactTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('contact_text');
-            $table->string('address_short');
-            $table->string('address_long');
-            $table->string('email');
-            $table->string('telephone');
-            $table->string('fax');
-            $table->string('facebook_link');
-            $table->string('twitter_link');
-            $table->string('instagram_link');
-            $table->string('googleplus_link');
-            $table->string('linkedin_link');
+            $table->string('contact_address_short');
+            $table->string('contact_address_long');
+            $table->string('contact_email');
+            $table->string('contact_phone');
+            $table->string('contact_fax');
+            $table->string('contact_facebook_link');
+            $table->string('contact_twitter_link');
+            $table->string('contact_instagram_link');
+            $table->string('contact_googleplus_link');
+            $table->string('contact_linkedin_link');
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ class CreateContactTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('contacts');
     }
 }
