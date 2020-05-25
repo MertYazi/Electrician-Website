@@ -15,10 +15,10 @@ class CreateGenerationsTable extends Migration
     {
         Schema::create('generations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('origin');
-            $table->text('caption');
-            $table->text('text');
-            $table->string('image');
+            $table->string('generation_origin');
+            $table->string('generation_caption');
+            $table->text('generation_text');
+            $table->string('generation_image');
             $table->timestamps();
         });
     }

@@ -37,10 +37,10 @@ class ReferenceController extends Controller
     public function store(Request $request)
     {
         $reference = new Reference();
-        $reference->title = $request['title'];
-        if($request['image'] != null){
-        $reference->image = $request['image'];}
-        $reference->link = $request['link'];
+        $reference->reference_title = $request['reference_title'];
+        if($request['reference_image'] != null){
+        $reference->reference_image = $request['reference_image'];}
+        $reference->reference_link = $request['reference_link'];
         $reference->save();
 
         return redirect('/admin/references');
@@ -77,10 +77,10 @@ class ReferenceController extends Controller
      */
     public function update(Request $request, Reference $reference)
     {
-        $reference->title = $request['title'];
-        if($request['image'] != null){
-        $reference->image = $request['image'];}
-        $reference->link = $request['link'];
+        $reference->reference_title = $request['reference_title'];
+        if($request['reference_image'] != null){
+        $reference->reference_image = $request['reference_image'];}
+        $reference->reference_link = $request['reference_link'];
         $reference->save();
 
         return redirect('/admin/references');

@@ -13,10 +13,10 @@ class CreateHelpTable extends Migration
      */
     public function up()
     {
-        Schema::create('help', function (Blueprint $table) {
+        Schema::create('helps', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('caption');
-            $table->string('keywords');
+            $table->text('help_caption');
+            $table->string('help_keywords');
             $table->string('decide_image');
             $table->text('decide_text');
             $table->string('reach_image');
@@ -36,6 +36,6 @@ class CreateHelpTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('help');
+        Schema::dropIfExists('helps');
     }
 }

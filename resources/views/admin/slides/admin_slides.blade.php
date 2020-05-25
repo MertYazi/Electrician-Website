@@ -4,7 +4,7 @@
 
   @foreach($slides as $slide)
   <div class="form-inline">
-  <label for="caption">{{ $slide->caption }}</label>
+  <label for="slide_caption">{{ $slide->slide_caption }}</label>
   <a class="btn btn-success ml-4" href="/admin/slides/{{ $slide->id }}/edit" role="button">Edit</a>
   <form method="POST" action="/admin/slides/{{ $slide->id }}">
     @csrf

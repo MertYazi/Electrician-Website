@@ -71,16 +71,16 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $contact->contact_text=$request['contact_text'];
-        $contact->address_short=$request['address_short'];
-        $contact->address_long=$request['address_long'];
-        $contact->email=$request['email'];
-        $contact->telephone=$request['telephone'];
-        $contact->fax=$request['fax'];
-        $contact->facebook_link=$request['facebook_link'];
-        $contact->twitter_link=$request['twitter_link'];
-        $contact->googleplus_link=$request['googleplus_link'];
-        $contact->linkedin_link=$request['linkedin_link'];
-        $contact->instagram_link=$request['instagram_link'];
+        $contact->contact_address_short=$request['contact_address_short'];
+        $contact->contact_address_long=$request['contact_address_long'];
+        $contact->contact_email=$request['contact_email'];
+        $contact->contact_phone=$request['contact_phone'];
+        $contact->contact_fax=$request['contact_fax'];
+        $contact->contact_facebook_link=$request['contact_facebook_link'];
+        $contact->contact_twitter_link=$request['contact_twitter_link'];
+        $contact->contact_googleplus_link=$request['contact_googleplus_link'];
+        $contact->contact_linkedin_link=$request['contact_linkedin_link'];
+        $contact->contact_instagram_link=$request['contact_instagram_link'];
         $contact->save();
         return redirect('/admin/contact');
     }

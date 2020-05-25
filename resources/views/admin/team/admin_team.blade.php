@@ -4,7 +4,7 @@
 
   @foreach($teams as $team)
   <div class="form-inline">
-      <label for="name"> {{ $team->name }} {{ $team->surname }}</label>
+      <label for="member_name"> {{ $team->member_name }} {{ $team->member_surname }}</label>
       <a class="btn btn-success ml-4" href="/admin/team/{{ $team->id }}/edit" role="button">Edit</a>
       <form method="POST" action="/admin/team/{{ $team->id }}">
         @csrf

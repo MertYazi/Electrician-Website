@@ -37,10 +37,10 @@ class SlideController extends Controller
     public function store(Request $request)
     {
         $slide = new Slide();
-        $slide->caption = $request['caption'];
-        $slide->text = $request['text'];
-        if($request['image'] != null){
-        $slide->image = $request['image'];}
+        $slide->slide_caption = $request['slide_caption'];
+        $slide->slide_text = $request['slide_text'];
+        if($request['slide_image'] != null){
+        $slide->slide_image = $request['slide_image'];}
         $slide->save();
 
         return redirect('/admin/slides');
@@ -77,10 +77,10 @@ class SlideController extends Controller
      */
     public function update(Request $request, Slide $slide)
     {
-        $slide->caption = $request['caption'];
-        $slide->text = $request['text'];
-        if($request['image'] != null){
-        $slide->image = $request['image'];}
+        $slide->slide_caption = $request['slide_caption'];
+        $slide->slide_text = $request['slide_text'];
+        if($request['slide_image'] != null){
+        $slide->slide_image = $request['slide_image'];}
         $slide->save();
 
         return redirect('/admin/slides');

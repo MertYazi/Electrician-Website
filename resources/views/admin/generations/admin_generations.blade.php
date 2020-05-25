@@ -5,16 +5,16 @@
 <form>
   <div class="form-row">
     <div class="form-group col-md-12">
-      <label for="caption"><b>Generation Caption:</b> {{ $generation->caption }}</label>
+      <label for="generation_caption"><b>Generation Caption:</b> {{ $generation->generation_caption }}</label>
     </div>
     <div class="form-group col-md-12">
-      <label for="text"><b>Generation Text:</b> {{ $generation->text }}</label>
+      <label for="generation_text"><b>Generation Text:</b> {{ $generation->generation_text }}</label>
     </div>
     <div class="form-group col-md-12">
-      <label for="image"><b>Generation Image:</b> {{ $generation->image }}</label>
+      <label for="generation_image"><b>Generation Image:</b> {{ $generation->generation_image }}</label>
     </div>
     <div class="form-group col-md-12">
-      <label for="origin"><b>Generation Origin:</b> {{ $generation->origin }}</label>
+      <label for="generation_origin"><b>Generation Origin:</b> {{ $generation->generation_origin }}</label>
     </div>
   </div>
   <a class="btn btn-primary" href="/admin/generations/1/edit" role="button">Edit</a>

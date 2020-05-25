@@ -37,14 +37,14 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $service = new Service();
-        $service->title = $request['title'];
-        $service->description = $request['description'];
-        $service->text = $request['text'];
-        $service->importance = $request['importance'];
-        if($request['image'] != null){
-        $service->image = $request['image'];}
-        if($request['cover'] != null){
-        $service->cover = $request['cover'];}
+        $service->service_title = $request['service_title'];
+        $service->service_description = $request['service_description'];
+        $service->service_text = $request['service_text'];
+        $service->service_importance = $request['service_importance'];
+        if($request['service_image'] != null){
+        $service->service_image = $request['service_image'];}
+        if($request['service_cover'] != null){
+        $service->service_cover = $request['service_cover'];}
         $service->save();
 
         return redirect('/admin/services');
@@ -81,14 +81,14 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        $service->title = $request['title'];
-        $service->description = $request['description'];
-        $service->text = $request['text'];
-        $service->importance = $request['importance'];
-        if($request['image'] != null){
-        $service->image = $request['image'];}
-        if($request['cover'] != null){
-        $service->cover = $request['cover'];}
+        $service->service_title = $request['service_title'];
+        $service->service_description = $request['service_description'];
+        $service->service_text = $request['service_text'];
+        $service->service_importance = $request['service_importance'];
+        if($request['service_image'] != null){
+        $service->service_image = $request['service_image'];}
+        if($request['service_cover'] != null){
+        $service->service_cover = $request['service_cover'];}
         $service->save();
 
         return redirect('/admin/services');

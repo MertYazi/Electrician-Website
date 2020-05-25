@@ -37,14 +37,14 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $team = new Team();
-        $team->name = $request['name'];
-        $team->surname = $request['surname'];
-        $team->mission = $request['mission'];
-        $team->facebook = $request['facebook'];
-        $team->instagram = $request['instagram'];
-        $team->twitter = $request['twitter'];
-        if($request['image'] != null){
-        $team->image = $request['image'];}
+        $team->member_name = $request['member_name'];
+        $team->member_surname = $request['member_surname'];
+        $team->member_mission = $request['member_mission'];
+        $team->member_facebook = $request['member_facebook'];
+        $team->member_instagram = $request['member_instagram'];
+        $team->member_twitter = $request['member_twitter'];
+        if($request['member_image'] != null){
+        $team->member_image = $request['member_image'];}
         $team->save();
         return redirect('/admin/team');
     }
@@ -80,14 +80,14 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        $team->name = $request['name'];
-        $team->surname = $request['surname'];
-        $team->mission = $request['mission'];
-        $team->facebook = $request['facebook'];
-        $team->instagram = $request['instagram'];
-        $team->twitter = $request['twitter'];
-        if($request['image'] != null){
-        $team->image = $request['image'];}
+        $team->member_name = $request['member_name'];
+        $team->member_surname = $request['member_surname'];
+        $team->member_mission = $request['member_mission'];
+        $team->member_facebook = $request['member_facebook'];
+        $team->member_instagram = $request['member_instagram'];
+        $team->member_twitter = $request['member_twitter'];
+        if($request['member_image'] != null){
+        $team->member_image = $request['member_image'];}
         $team->save();
         return redirect('/admin/team');
     }

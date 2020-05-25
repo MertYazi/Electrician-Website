@@ -70,8 +70,8 @@ class HelpController extends Controller
      */
     public function update(Request $request, Help $help)
     {
-        $help->caption=$request['caption'];
-        $help->keywords=$request['keywords'];
+        $help->help_caption=$request['help_caption'];
+        $help->help_keywords=$request['help_keywords'];
         $help->decide_text=$request['decide_text'];
         if($request['decide_image'] != null){
         $help->decide_image=$request['decide_image'];}
