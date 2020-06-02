@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/team/{{ $team->id }}">
+<form method="POST" action="/admin/team/{{ $team->id }}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 

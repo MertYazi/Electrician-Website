@@ -2,13 +2,13 @@
 
 @section('content')
 
-<form method="POST" action="/admin/services">
+<form method="POST" action="/admin/services" enctype="multipart/form-data">
   @csrf
 
   <div class="form-row">
     <div class="form-group col-md-12">
       <label for="service_title"><b>Service Title</b> </label>
-      <input type="text" class="form-control" id="service_title" name="service_service_title">
+      <input type="text" class="form-control" id="service_title" name="service_title">
     </div>
     <div class="form-group col-md-12">
       <label for="service_description"><b>Service Description</b> </label>
@@ -20,7 +20,10 @@
     </div>
     <div class="form-group col-md-12">
       <label for="service_importance"><b>Service Importance</b> </label>
-      <input type="text" class="form-control" id="service_importance" name="service_importance">
+      <select class="custom-select" id="service_importance" name="service_importance">
+        <option selected value="0">Low</option>
+        <option value="1">High</option>
+      </select>
     </div>
     <div class="form-group col-md-12">
       <label for="service_image"><b>Service Image</b> </label>

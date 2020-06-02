@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\About;
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 
 class AboutController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -72,13 +74,16 @@ class AboutController extends Controller
     {
         $about->history_text=$request['history_text'];
         if($request['history_image'] != null){
-        $about->history_image=$request['history_image'];}
+          $this->handle_image($request, $about, 'history_image');
+        }
         $about->mission_text=$request['mission_text'];
         if($request['mission_image'] != null){
-        $about->mission_image=$request['mission_image'];}
+          $this->handle_image($request, $about, 'mission_image');
+        }
         $about->vision_text=$request['vision_text'];
         if($request['vision_image'] != null){
-        $about->vision_image=$request['vision_image'];}
+          $this->handle_image($request, $about, 'vision_image');
+        }
         $about->save();
         return redirect('/admin/about');
     }

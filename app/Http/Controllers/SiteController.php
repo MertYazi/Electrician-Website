@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Site;
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 
 class SiteController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -70,22 +72,26 @@ class SiteController extends Controller
      */
     public function update(Request $request, Site $site)
     {
-        $site->site_name=$request['site_name'];
-        $site->site_year=$request['site_year'];
-        $site->site_description=$request['site_description'];
-        $site->references_caption=$request['references_caption'];
+        $site->site_name = $request['site_name'];
+        $site->site_year = $request['site_year'];
+        $site->site_description = $request['site_description'];
+        $site->references_caption = $request['references_caption'];
         if($request['references_cover'] != null){
-        $site->references_cover=$request['references_cover'];}
-        $site->about_caption=$request['about_caption'];
+          $this->handle_image($request, $site, 'references_cover');
+        }
+        $site->about_caption = $request['about_caption'];
         if($request['about_cover'] != null){
-        $site->about_cover=$request['about_cover'];}
-        $site->contact_caption=$request['contact_caption'];
+          $this->handle_image($request, $site, 'about_cover');
+        }
+        $site->contact_caption = $request['contact_caption'];
         if($request['contact_cover'] != null){
-        $site->contact_cover=$request['contact_cover'];}
-        $site->services_caption=$request['services_caption'];
+          $this->handle_image($request, $site, 'contact_cover');
+        }
+        $site->services_caption = $request['services_caption'];
         if($request['services_cover'] != null){
-        $site->services_cover=$request['services_cover'];}
-        $site->team_caption=$request['team_caption'];
+          $this->handle_image($request, $site, 'services_cover');
+        }
+        $site->team_caption = $request['team_caption'];
         $site->save();
         return redirect('/admin/site');
     }
@@ -100,4 +106,5 @@ class SiteController extends Controller
     {
         //
     }
+
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 
 class TeamController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -44,9 +46,12 @@ class TeamController extends Controller
         $team->member_instagram = $request['member_instagram'];
         $team->member_twitter = $request['member_twitter'];
         if($request['member_image'] != null){
-        $team->member_image = $request['member_image'];}
+          $team->member_image = $request['member_name'] . '-' . $request['member_surname'] . '.' . $request['member_image']->extension();
+          $this->handle_image($request, $team, 'member_image');
+        }
         $team->save();
         return redirect('/admin/team');
+
     }
 
     /**
@@ -87,7 +92,13 @@ class TeamController extends Controller
         $team->member_instagram = $request['member_instagram'];
         $team->member_twitter = $request['member_twitter'];
         if($request['member_image'] != null){
-        $team->member_image = $request['member_image'];}
+          $this->handle_image($request, $team, 'member_image');
+        }else{
+          $image_extension = explode('.', $team->member_image);
+          $new_image_name = $request['member_name'] . '-' . $request['member_surname'] . '.' . $image_extension[1];
+          rename(public_path('img/' . $team->member_image), public_path('img/' . $new_image_name));
+          $team->member_image = $new_image_name;
+        }
         $team->save();
         return redirect('/admin/team');
     }
@@ -101,7 +112,10 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-
+        if(file_exists(public_path('img/' . $team->member_image))){
+          unlink(public_path('img/' . $team->member_image));
+        }
         return redirect('/admin/team');
     }
+
 }

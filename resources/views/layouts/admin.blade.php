@@ -166,6 +166,8 @@ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07j
 
 <script src="https://kit.fontawesome.com/91b4e4e316.js" crossorigin="anonymous"></script>
 
+<script src="{{ asset('js/scripts.js') }}"></script>
+
 </body>
 
 </html>

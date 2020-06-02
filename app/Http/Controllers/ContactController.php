@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 
 class ContactController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *

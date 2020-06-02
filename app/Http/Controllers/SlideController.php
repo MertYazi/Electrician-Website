@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Slide;
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 
 class SlideController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -39,8 +41,13 @@ class SlideController extends Controller
         $slide = new Slide();
         $slide->slide_caption = $request['slide_caption'];
         $slide->slide_text = $request['slide_text'];
+
         if($request['slide_image'] != null){
-        $slide->slide_image = $request['slide_image'];}
+          $slide_name = str_replace(' ', '-', $request['slide_caption']);
+          $slide->slide_image = $slide_name . '.' . $request['slide_image']->extension();
+          $this->handle_image($request, $slide, 'slide_image');
+        }
+
         $slide->save();
 
         return redirect('/admin/slides');
@@ -79,8 +86,17 @@ class SlideController extends Controller
     {
         $slide->slide_caption = $request['slide_caption'];
         $slide->slide_text = $request['slide_text'];
+
         if($request['slide_image'] != null){
-        $slide->slide_image = $request['slide_image'];}
+          $this->handle_image($request, $slide, 'slide_image');
+        }else{
+          $slide_name = str_replace(' ', '-', $request['slide_caption']);
+          $image_extension = explode('.', $slide->slide_image);
+          $new_image_name = $slide_name . '.' . $image_extension[1];
+          rename(public_path('img/' . $slide->slide_image), public_path('img/' . $new_image_name));
+          $slide->slide_image = $new_image_name;
+        }
+
         $slide->save();
 
         return redirect('/admin/slides');
@@ -95,6 +111,9 @@ class SlideController extends Controller
     public function destroy(Slide $slide)
     {
         $slide->delete();
+        if(file_exists(public_path('img/' . $slide->slide_image))){
+          unlink(public_path('img/' . $slide->slide_image));
+        }
 
         return redirect('/admin/slides');
 

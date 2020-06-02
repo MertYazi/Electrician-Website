@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/contact/1">
+<form method="POST" action="/admin/contact/1" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 
