@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 
 class ServiceController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -41,10 +43,20 @@ class ServiceController extends Controller
         $service->service_description = $request['service_description'];
         $service->service_text = $request['service_text'];
         $service->service_importance = $request['service_importance'];
+
+
         if($request['service_image'] != null){
-        $service->service_image = $request['service_image'];}
+          $service_name = str_replace(' ', '-', $request['service_title']);
+          $service->service_image = $service_name . '.' . $request['service_image']->extension();
+          $this->handle_image($request, $service, 'service_image');
+        }
+
         if($request['service_cover'] != null){
-        $service->service_cover = $request['service_cover'];}
+          $service_name = str_replace(' ', '-', $request['service_title']);
+          $service->service_cover = $service_name . '-cover' . '.' . $request['service_cover']->extension();
+          $this->handle_image($request, $service, 'service_cover');
+        }
+
         $service->save();
 
         return redirect('/admin/services');
@@ -85,10 +97,27 @@ class ServiceController extends Controller
         $service->service_description = $request['service_description'];
         $service->service_text = $request['service_text'];
         $service->service_importance = $request['service_importance'];
+
         if($request['service_image'] != null){
-        $service->service_image = $request['service_image'];}
+          $this->handle_image($request, $service, 'service_image');
+        }else{
+          $service_name = str_replace(' ', '-', $request['service_title']);
+          $image_extension = explode('.', $service->service_image);
+          $new_image_name = $service_name . '.' . $image_extension[1];
+          rename(public_path('img/' . $service->service_image), public_path('img/' . $new_image_name));
+          $service->service_image = $new_image_name;
+        }
+
         if($request['service_cover'] != null){
-        $service->service_cover = $request['service_cover'];}
+          $this->handle_image($request, $service, 'service_cover');
+        }else{
+          $service_name = str_replace(' ', '-', $request['service_title']);
+          $image_extension = explode('.', $service->service_cover);
+          $new_image_name = $service_name . '-cover' . '.' . $image_extension[1];
+          rename(public_path('img/' . $service->service_cover), public_path('img/' . $new_image_name));
+          $service->service_cover = $new_image_name;
+        }
+
         $service->save();
 
         return redirect('/admin/services');
@@ -103,6 +132,12 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service->delete();
+        if(file_exists(public_path('img/' . $service->service_image))){
+          unlink(public_path('img/' . $service->service_image));
+        }
+        if(file_exists(public_path('img/' . $service->service_cover))){
+          unlink(public_path('img/' . $service->service_cover));
+        }
 
         return redirect('/admin/services');
     }

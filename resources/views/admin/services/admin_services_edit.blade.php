@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/services/{{ $service->id }}">
+<form method="POST" action="/admin/services/{{ $service->id }}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 
@@ -21,7 +21,15 @@
     </div>
     <div class="form-group col-md-12">
       <label for="service_importance"><b>Service Importance</b> </label>
-      <input type="text" class="form-control" id="service_importance" name="service_importance" value="{{ $service->service_importance }}">
+      <select class="custom-select" id="service_importance" name="service_importance">
+          @if ($service->service_importance === 0)
+            <option selected value="0">Low</option>
+            <option value="1">High</option>
+          @else
+            <option selected value="1">High</option>
+            <option value="0">Low</option>
+          @endif
+      </select>
     </div>
     <div class="form-group col-md-12">
       <label for="service_image"><b>Service Image</b> </label>

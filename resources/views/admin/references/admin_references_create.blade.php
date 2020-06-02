@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/references">
+<form method="POST" action="/admin/references" enctype="multipart/form-data">
   @csrf
 
   <div class="form-row">

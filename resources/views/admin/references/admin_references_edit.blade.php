@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/references/{{ $reference->id }}">
+<form method="POST" action="/admin/references/{{ $reference->id }}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 

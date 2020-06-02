@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/team">
+<form method="POST" action="/admin/team" enctype="multipart/form-data">
   @csrf
   <div class="form-row">
     <div class="form-group col-md-12">

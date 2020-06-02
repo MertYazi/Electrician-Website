@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Generation;
 use Illuminate\Http\Request;
+use App\Traits\ImageTrait;
 
 class GenerationController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -73,7 +75,8 @@ class GenerationController extends Controller
         $generation->generation_text=$request['generation_text'];
         $generation->generation_caption=$request['generation_caption'];
         if($request['generation_image'] != null){
-        $generation->generation_image=$request['generation_image'];}
+          $this->handle_image($request, $generation, 'generation_image');
+        }
         $generation->generation_origin=$request['generation_origin'];
         $generation->save();
         return redirect('/admin/generations');

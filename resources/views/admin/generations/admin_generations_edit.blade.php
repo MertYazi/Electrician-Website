@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/generations/1">
+<form method="POST" action="/admin/generations/1" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group col-md-12">
       <label for="generation_origin"><b>Generations Origin</b></label>
-      <input type="number" class="form-control" id="generation_origin" name="generation_origin" value="{{ $generation->generation_origin }}">
+      <input type="text" class="form-control" id="generation_origin" name="generation_origin" value="{{ $generation->generation_origin }}">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Save Changes</button>

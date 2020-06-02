@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/slides">
+<form method="POST" action="/admin/slides" enctype="multipart/form-data">
   @csrf
 
   <div class="form-row">

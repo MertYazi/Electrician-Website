@@ -5,6 +5,12 @@
   @foreach($slides as $slide)
   <div class="form-inline">
   <label for="slide_caption">{{ $slide->slide_caption }}</label>
+  <img class="image-small ml-1" src="{{ asset('img/'.$slide->slide_image) }}" alt="{{ $slide->slide_image }}">
+  <div class="image-modal">
+    <span class="close">&times;</span>
+    <img class="modal-content image-large">
+    <div class="modal-caption"></div>
+  </div>
   <a class="btn btn-success ml-4" href="/admin/slides/{{ $slide->id }}/edit" role="button">Edit</a>
   <form method="POST" action="/admin/slides/{{ $slide->id }}">
     @csrf

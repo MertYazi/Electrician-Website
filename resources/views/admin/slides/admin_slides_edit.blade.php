@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="/admin/slides/{{ $slide->id }}">
+<form method="POST" action="/admin/slides/{{ $slide->id }}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
   <div class="form-row">

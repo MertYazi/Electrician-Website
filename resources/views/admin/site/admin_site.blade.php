@@ -18,24 +18,48 @@
     </div>
     <div class="form-group col-md-12">
       <label for="references_cover"><b>References Cover:</b> {{ $site->references_cover }}</label>
+      <img class="image-small ml-1" src="{{ asset('img/'.$site->references_cover) }}" alt="{{ $site->references_cover }}">
+      <div class="image-modal">
+        <span class="close">&times;</span>
+        <img class="modal-content image-large">
+        <div class="modal-caption"></div>
+      </div>
     </div>
     <div class="form-group col-md-12">
       <label for="about_caption"><b>About Caption:</b> {{ $site->about_caption }}</label>
     </div>
     <div class="form-group col-md-12">
       <label for="about_cover"><b>About Cover:</b> {{ $site->about_cover }}</label>
+      <img class="image-small ml-1" src="{{ asset('img/'.$site->about_cover) }}" alt="{{ $site->about_cover }}">
+      <div class="image-modal">
+        <span class="close">&times;</span>
+        <img class="modal-content image-large">
+        <div class="modal-caption"></div>
+      </div>
     </div>
     <div class="form-group col-md-12">
       <label for="contact_caption"><b>Contact Caption:</b> {{ $site->contact_caption }}</label>
     </div>
     <div class="form-group col-md-12">
       <label for="contact_cover"><b>Contact Cover:</b> {{ $site->contact_cover }}</label>
+      <img class="image-small ml-1" src="{{ asset('img/'.$site->contact_cover) }}" alt="{{ $site->contact_cover }}">
+      <div class="image-modal">
+        <span class="close">&times;</span>
+        <img class="modal-content image-large">
+        <div class="modal-caption"></div>
+      </div>
     </div>
     <div class="form-group col-md-12">
       <label for="services_caption"><b>Services Caption:</b> {{ $site->services_caption }}</label>
     </div>
     <div class="form-group col-md-12">
       <label for="services_cover"><b>Services Cover:</b> {{ $site->services_cover }}</label>
+      <img class="image-small ml-1" src="{{ asset('img/'.$site->services_cover) }}" alt="{{ $site->services_cover }}">
+      <div class="image-modal">
+        <span class="close">&times;</span>
+        <img class="modal-content image-large">
+        <div class="modal-caption"></div>
+      </div>
     </div>
     <div class="form-group col-md-12">
       <label for="team_caption"><b>Team Caption:</b> {{ $site->team_caption }}</label>
