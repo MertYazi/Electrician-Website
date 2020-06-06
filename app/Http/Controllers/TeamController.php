@@ -38,6 +38,8 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate_data($request);
+        $all_members = Team::all();
         $team = new Team();
         $team->member_name = $request['member_name'];
         $team->member_surname = $request['member_surname'];
@@ -45,11 +47,15 @@ class TeamController extends Controller
         $team->member_facebook = $request['member_facebook'];
         $team->member_instagram = $request['member_instagram'];
         $team->member_twitter = $request['member_twitter'];
-        if($request['member_image'] != null){
-          $team->member_image = $request['member_name'] . '-' . $request['member_surname'] . '.' . $request['member_image']->extension();
-          $this->handle_image($request, $team, 'member_image');
+        foreach ($all_members as $single_member) {
+          if($request['member_name'] == $single_member->member_name && $request['member_surname'] == $single_member->member_surname){
+            return redirect()->back()->withInput()->withErrors(['member_exist' => 'The team member already exist!']);
+          }
         }
+        $team->member_image = $request['member_name'] . '-' . $request['member_surname'] . '.' . $request['member_image']->extension();
+        $this->handle_image($request, $team, 'member_image');
         $team->save();
+
         return redirect('/admin/team');
 
     }
@@ -85,6 +91,7 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
+        $this->validate_data($request);
         $team->member_name = $request['member_name'];
         $team->member_surname = $request['member_surname'];
         $team->member_mission = $request['member_mission'];
@@ -100,6 +107,7 @@ class TeamController extends Controller
           $team->member_image = $new_image_name;
         }
         $team->save();
+
         return redirect('/admin/team');
     }
 
@@ -115,7 +123,21 @@ class TeamController extends Controller
         if(file_exists(public_path('img/' . $team->member_image))){
           unlink(public_path('img/' . $team->member_image));
         }
+        
         return redirect('/admin/team');
+    }
+
+    public function validate_data(Request $request){
+
+        $request->validate([
+          'member_name' => 'required|between:2,255',
+          'member_surname' => 'required|between:2,255',
+          'member_mission' => 'required|between:2,255',
+          'member_facebook' => 'required|url',
+          'member_instagram' => 'required|url',
+          'member_twitter' => 'required|url',
+          'member_image' => 'image',
+        ]);
     }
 
 }

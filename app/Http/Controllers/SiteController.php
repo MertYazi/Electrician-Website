@@ -72,6 +72,7 @@ class SiteController extends Controller
      */
     public function update(Request $request, Site $site)
     {
+        $this->validate_data($request);
         $site->site_name = $request['site_name'];
         $site->site_year = $request['site_year'];
         $site->site_description = $request['site_description'];
@@ -93,6 +94,7 @@ class SiteController extends Controller
         }
         $site->team_caption = $request['team_caption'];
         $site->save();
+        
         return redirect('/admin/site');
     }
 
@@ -105,6 +107,24 @@ class SiteController extends Controller
     public function destroy(Site $site)
     {
         //
+    }
+
+    public function validate_data(Request $request){
+
+        $request->validate([
+          'site_name' => 'required|between:2,255',
+          'site_year' => 'required|size:4',
+          'site_description' => 'required|between:2,255',
+          'references_caption' => 'required|between:2,255',
+          'about_caption' => 'required|between:2,255',
+          'contact_caption' => 'required|between:2,255',
+          'services_caption' => 'required|between:2,255',
+          'team_caption' => 'required|between:2,255',
+          'references_cover' => 'image',
+          'about_cover' => 'image',
+          'contact_cover' => 'image',
+          'services_cover' => 'image',
+        ]);
     }
 
 }

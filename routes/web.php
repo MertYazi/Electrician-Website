@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'AppearanceController@index');
 Route::get('/about', 'AppearanceController@about');
 Route::get('/contact', 'AppearanceController@contact');
+Route::post('/contact', 'AppearanceController@send_contact');
 Route::get('/references', 'AppearanceController@references');
 Route::get('/services', 'AppearanceController@services');
 Route::get('/individual-services', 'AppearanceController@individual_services');
