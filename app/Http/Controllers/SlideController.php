@@ -38,16 +38,19 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate_data($request);
+        $all_slides = Slide::all();
         $slide = new Slide();
         $slide->slide_caption = $request['slide_caption'];
         $slide->slide_text = $request['slide_text'];
-
-        if($request['slide_image'] != null){
-          $slide_name = str_replace(' ', '-', $request['slide_caption']);
-          $slide->slide_image = $slide_name . '.' . $request['slide_image']->extension();
-          $this->handle_image($request, $slide, 'slide_image');
+        foreach ($all_slides as $single_slide) {
+          if($request['slide_caption'] == $single_slide->slide_caption){
+            return redirect()->back()->withInput()->withErrors(['slide_exist' => 'The slide already exist!']);
+          }
         }
-
+        $slide_name = str_replace(' ', '-', $request['slide_caption']);
+        $slide->slide_image = $slide_name . '.' . $request['slide_image']->extension();
+        $this->handle_image($request, $slide, 'slide_image');
         $slide->save();
 
         return redirect('/admin/slides');
@@ -84,9 +87,9 @@ class SlideController extends Controller
      */
     public function update(Request $request, Slide $slide)
     {
+        $this->validate_data($request);
         $slide->slide_caption = $request['slide_caption'];
         $slide->slide_text = $request['slide_text'];
-
         if($request['slide_image'] != null){
           $this->handle_image($request, $slide, 'slide_image');
         }else{
@@ -96,7 +99,6 @@ class SlideController extends Controller
           rename(public_path('img/' . $slide->slide_image), public_path('img/' . $new_image_name));
           $slide->slide_image = $new_image_name;
         }
-
         $slide->save();
 
         return redirect('/admin/slides');
@@ -116,6 +118,14 @@ class SlideController extends Controller
         }
 
         return redirect('/admin/slides');
+    }
 
+    public function validate_data(Request $request){
+
+        $request->validate([
+          'slide_caption' => 'required|between:2,255',
+          'slide_text' => 'required|between:2,255',
+          'slide_image' => 'image',
+        ]);
     }
 }

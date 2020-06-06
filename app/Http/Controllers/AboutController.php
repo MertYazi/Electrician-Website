@@ -72,6 +72,7 @@ class AboutController extends Controller
      */
     public function update(Request $request, About $about)
     {
+        $this->validate_data($request);
         $about->history_text=$request['history_text'];
         if($request['history_image'] != null){
           $this->handle_image($request, $about, 'history_image');
@@ -85,6 +86,7 @@ class AboutController extends Controller
           $this->handle_image($request, $about, 'vision_image');
         }
         $about->save();
+        
         return redirect('/admin/about');
     }
 
@@ -97,5 +99,17 @@ class AboutController extends Controller
     public function destroy(About $about)
     {
         //
+    }
+
+    public function validate_data(Request $request){
+
+        $request->validate([
+          'history_text' => 'required|between:2,255',
+          'mission_text' => 'required|between:2,255',
+          'vision_text' => 'required|between:2,255',
+          'history_image' => 'image',
+          'mission_image' => 'image',
+          'vision_image' => 'image',
+        ]);
     }
 }

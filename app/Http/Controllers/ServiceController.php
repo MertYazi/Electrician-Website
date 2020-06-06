@@ -38,13 +38,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate_data($request);
+        $all_services = Service::all();
         $service = new Service();
         $service->service_title = $request['service_title'];
         $service->service_description = $request['service_description'];
         $service->service_text = $request['service_text'];
         $service->service_importance = $request['service_importance'];
-
-
+        foreach ($all_services as $single_service) {
+          if($request['service_title'] == $single_service->service_title){
+            return redirect()->back()->withInput()->withErrors(['service_exist' => 'The service already exist!']);
+          }
+        }
         if($request['service_image'] != null){
           $service_name = str_replace(' ', '-', $request['service_title']);
           $service->service_image = $service_name . '.' . $request['service_image']->extension();
@@ -56,7 +61,6 @@ class ServiceController extends Controller
           $service->service_cover = $service_name . '-cover' . '.' . $request['service_cover']->extension();
           $this->handle_image($request, $service, 'service_cover');
         }
-
         $service->save();
 
         return redirect('/admin/services');
@@ -93,11 +97,11 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
+        $this->validate_data($request);
         $service->service_title = $request['service_title'];
         $service->service_description = $request['service_description'];
         $service->service_text = $request['service_text'];
         $service->service_importance = $request['service_importance'];
-
         if($request['service_image'] != null){
           $this->handle_image($request, $service, 'service_image');
         }else{
@@ -107,7 +111,6 @@ class ServiceController extends Controller
           rename(public_path('img/' . $service->service_image), public_path('img/' . $new_image_name));
           $service->service_image = $new_image_name;
         }
-
         if($request['service_cover'] != null){
           $this->handle_image($request, $service, 'service_cover');
         }else{
@@ -117,7 +120,6 @@ class ServiceController extends Controller
           rename(public_path('img/' . $service->service_cover), public_path('img/' . $new_image_name));
           $service->service_cover = $new_image_name;
         }
-
         $service->save();
 
         return redirect('/admin/services');
@@ -140,5 +142,16 @@ class ServiceController extends Controller
         }
 
         return redirect('/admin/services');
+    }
+
+    public function validate_data(Request $request){
+
+        $request->validate([
+          'service_title' => 'required|between:2,255',
+          'service_description' => 'required|between:2,255',
+          'service_text' => 'required|between:2,255',
+          'service_image' => 'image',
+          'service_cover' => 'image',
+        ]);
     }
 }

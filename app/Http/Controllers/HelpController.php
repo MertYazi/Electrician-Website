@@ -72,6 +72,7 @@ class HelpController extends Controller
      */
     public function update(Request $request, Help $help)
     {
+        $this->validate_data($request);
         $help->help_caption=$request['help_caption'];
         $help->help_keywords=$request['help_keywords'];
         $help->decide_text=$request['decide_text'];
@@ -91,6 +92,7 @@ class HelpController extends Controller
           $this->handle_image($request, $help, 'get_service_image');
         }
         $help->save();
+        
         return redirect('/admin/help');
     }
 
@@ -103,5 +105,21 @@ class HelpController extends Controller
     public function destroy(Help $help)
     {
         //
+    }
+
+    public function validate_data(Request $request){
+
+        $request->validate([
+          'help_caption' => 'required|between:2,255',
+          'help_keywords' => 'required|between:2,255',
+          'decide_text' => 'required|between:2,255',
+          'reach_text' => 'required|between:2,255',
+          'consult_text' => 'required|between:2,255',
+          'get_service_text' => 'required|between:2,255',
+          'decide_image' => 'image',
+          'reach_image' => 'image',
+          'consult_image' => 'image',
+          'get_service_image' => 'image',
+        ]);
     }
 }

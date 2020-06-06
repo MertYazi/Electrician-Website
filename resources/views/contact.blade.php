@@ -25,18 +25,35 @@
         You can easily describe your problem and contact with us with following form. Our experts return back to you as quick as possible!
       </p><hr>
 
-      <form>
+      <form method="POST" action="/contact" enctype="multipart/form-data">
+        @csrf
+
+        @if (Session::has('message_sent'))
+        <p class="alert alert-success">{{ Session::get('message_sent') }}</p>
+        @endif
         <div class="form-group">
-          <input type="text" class="form-control border-0" id="InputText1" placeholder="Enter name">
+          <input type="text" class="form-control border-0 @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter name" value="{{ old('name') }}">
+          @error('name')
+          <p class="alert alert-danger">{{ $errors->first('name') }}</p>
+          @enderror
         </div><hr>
         <div class="form-group">
-          <input type="email" class="form-control border-0" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" class="form-control border-0 @error('email') is-invalid @enderror" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
+          @error('email')
+          <p class="alert alert-danger">{{ $errors->first('email') }}</p>
+          @enderror
         </div><hr>
         <div class="form-group">
-          <input type="text" class="form-control border-0" id="InputText2" placeholder="Enter subject">
+          <input type="text" class="form-control border-0 @error('subject') is-invalid @enderror" id="subject" name="subject" placeholder="Enter subject" value="{{ old('subject') }}">
+          @error('subject')
+          <p class="alert alert-danger">{{ $errors->first('subject') }}</p>
+          @enderror
         </div><hr>
         <div class="form-group">
-          <textarea class="form-control border-0" id="FormControlTextarea1" rows="2" placeholder="Enter your message"></textarea>
+          <textarea class="form-control border-0 @error('message') is-invalid @enderror" id="message" name="message" rows="3" placeholder="Enter your message">{{ old('message') }}</textarea>
+          @error('message')
+          <p class="alert alert-danger">{{ $errors->first('message') }}</p>
+          @enderror
         </div><hr>
         <button type="submit" class="btn btn-outline-info btn-lg btn-block">Submit</button>
       </form>

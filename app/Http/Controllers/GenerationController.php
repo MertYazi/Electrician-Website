@@ -72,6 +72,7 @@ class GenerationController extends Controller
      */
     public function update(Request $request, Generation $generation)
     {
+        $this->validate_data($request);
         $generation->generation_text=$request['generation_text'];
         $generation->generation_caption=$request['generation_caption'];
         if($request['generation_image'] != null){
@@ -79,6 +80,7 @@ class GenerationController extends Controller
         }
         $generation->generation_origin=$request['generation_origin'];
         $generation->save();
+        
         return redirect('/admin/generations');
     }
 
@@ -91,5 +93,15 @@ class GenerationController extends Controller
     public function destroy(Generation $generation)
     {
         //
+    }
+
+    public function validate_data(Request $request){
+
+        $request->validate([
+          'generation_text' => 'required|between:2,255',
+          'generation_origin' => 'required|size:4',
+          'generation_caption' => 'required|between:2,255',
+          'generation_image' => 'image',
+        ]);
     }
 }
