@@ -16,6 +16,7 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('service_title')->unique();
+            $table->string('service_slug')->unique();
             $table->text('service_description');
             $table->text('service_text');
             $table->boolean('service_importance');

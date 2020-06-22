@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     protected $fillable = [
-        'service_title', 'service_description', 'service_text', 'service_importance', 'service_image', 'service_cover',
+        'service_title', 'service_slug', 'service_description', 'service_text', 'service_importance', 'service_image', 'service_cover',
     ];
 
 
@@ -19,4 +19,10 @@ class Service extends Model
     protected $casts = [
 
     ];
+
+    public function getRouteKeyName()
+    {
+      return 'service_slug';
+    }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\About;
+use App\Site;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -16,8 +18,11 @@ class AboutController extends Controller
      */
     public function index()
     {
-      $about = About::findOrFail(1);
-      return view('admin.about.admin_about', compact('about'));
+      $about = About::first();
+      $site = Site::first();
+      $contact = Contact::first();
+
+      return view('admin.about.admin_about', compact('about', 'site', 'contact'));
     }
 
     /**
@@ -27,7 +32,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/admin/about');
     }
 
     /**
@@ -38,7 +43,7 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/admin/about');
     }
 
     /**
@@ -49,7 +54,7 @@ class AboutController extends Controller
      */
     public function show(About $about)
     {
-        //
+        return redirect('/admin/about');
     }
 
     /**
@@ -60,7 +65,10 @@ class AboutController extends Controller
      */
     public function edit(About $about)
     {
-        return view('admin.about.admin_about_edit', compact('about'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.about.admin_about_edit', compact('about', 'site', 'contact'));
     }
 
     /**
@@ -86,7 +94,7 @@ class AboutController extends Controller
           $this->handle_image($request, $about, 'vision_image');
         }
         $about->save();
-        
+
         return redirect('/admin/about');
     }
 
@@ -98,15 +106,15 @@ class AboutController extends Controller
      */
     public function destroy(About $about)
     {
-        //
+        return redirect('/admin/about');
     }
 
     public function validate_data(Request $request){
 
         $request->validate([
-          'history_text' => 'required|between:2,255',
-          'mission_text' => 'required|between:2,255',
-          'vision_text' => 'required|between:2,255',
+          'history_text' => 'required|min:2',
+          'mission_text' => 'required|min:2',
+          'vision_text' => 'required|min:2',
           'history_image' => 'image',
           'mission_image' => 'image',
           'vision_image' => 'image',

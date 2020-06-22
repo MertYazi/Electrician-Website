@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Site;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -16,8 +17,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contact = Contact::findOrFail(1);
-        return view('admin.contact.admin_contact', compact('contact'));
+        $contact = Contact::first();
+        $site = Site::first();
+
+        return view('admin.contact.admin_contact', compact('contact', 'site'));
     }
 
     /**
@@ -27,7 +30,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/admin/contact');
     }
 
     /**
@@ -38,7 +41,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/admin/contact');
     }
 
     /**
@@ -49,7 +52,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return redirect('/admin/contact');
     }
 
     /**
@@ -60,7 +63,9 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        return view('admin.contact.admin_contact_edit', compact('contact'));
+        $site = Site::first();
+
+        return view('admin.contact.admin_contact_edit', compact('contact', 'site'));
     }
 
     /**
@@ -85,7 +90,7 @@ class ContactController extends Controller
         $contact->contact_linkedin_link=$request['contact_linkedin_link'];
         $contact->contact_instagram_link=$request['contact_instagram_link'];
         $contact->save();
-        
+
         return redirect('/admin/contact');
     }
 
@@ -97,13 +102,13 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        return redirect('/admin/contact');
     }
 
     public function validate_data(Request $request){
 
         $request->validate([
-          'contact_text' => 'required|between:2,255',
+          'contact_text' => 'required|min:2',
           'contact_address_short' => 'required|between:2,255',
           'contact_address_long' => 'required|between:2,255',
           'contact_email' => 'required|email:rfc,dns',

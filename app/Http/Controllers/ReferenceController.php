@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Reference;
+use App\Site;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -17,7 +19,10 @@ class ReferenceController extends Controller
     public function index()
     {
         $references = Reference::all();
-        return view('admin.references.admin_references', compact('references'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.references.admin_references', compact('references', 'site', 'contact'));
     }
 
     /**
@@ -27,7 +32,10 @@ class ReferenceController extends Controller
      */
     public function create()
     {
-        return view('admin.references.admin_references_create');
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.references.admin_references_create', compact('site', 'contact'));
     }
 
     /**
@@ -48,7 +56,7 @@ class ReferenceController extends Controller
           }
         }
         if($request['reference_image'] != null){
-          $reference_name = str_replace(' ', '-', $request['reference_title']);
+          $reference_name = str_slug($request['reference_title']);
           $reference->reference_image = $reference_name . '.' . $request['reference_image']->extension();
           $this->handle_image($request, $reference, 'reference_image');
         }
@@ -66,7 +74,7 @@ class ReferenceController extends Controller
      */
     public function show(Reference $reference)
     {
-        //
+        return redirect('/admin/references');
     }
 
     /**
@@ -77,7 +85,10 @@ class ReferenceController extends Controller
      */
     public function edit(Reference $reference)
     {
-        return view('admin.references.admin_references_edit', compact('reference'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.references.admin_references_edit', compact('reference', 'site', 'contact'));
     }
 
     /**
@@ -94,7 +105,7 @@ class ReferenceController extends Controller
         if($request['reference_image'] != null){
           $this->handle_image($request, $reference, 'reference_image');
         }else{
-          $reference_name = str_replace(' ', '-', $request['reference_title']);
+          $reference_name = str_slug($request['reference_title']);
           $image_extension = explode('.', $reference->reference_image);
           $new_image_name = $reference_name . '.' . $image_extension[1];
           rename(public_path('img/' . $reference->reference_image), public_path('img/' . $new_image_name));

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Site;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -17,7 +19,10 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
-        return view('admin.team.admin_team', compact('teams'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.team.admin_team', compact('teams', 'site', 'contact'));
     }
 
     /**
@@ -27,7 +32,10 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('admin.team.admin_team_create');
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.team.admin_team_create', compact('site', 'contact'));
     }
 
     /**
@@ -52,7 +60,7 @@ class TeamController extends Controller
             return redirect()->back()->withInput()->withErrors(['member_exist' => 'The team member already exist!']);
           }
         }
-        $team->member_image = $request['member_name'] . '-' . $request['member_surname'] . '.' . $request['member_image']->extension();
+        $team->member_image = str_slug($request['member_name'] . ' ' . $request['member_surname']) . '.' . $request['member_image']->extension();
         $this->handle_image($request, $team, 'member_image');
         $team->save();
 
@@ -68,7 +76,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return redirect('/admin/team');
     }
 
     /**
@@ -79,7 +87,10 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        return view('admin.team.admin_team_edit', compact('team'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.team.admin_team_edit', compact('team', 'site', 'contact'));
     }
 
     /**
@@ -102,7 +113,7 @@ class TeamController extends Controller
           $this->handle_image($request, $team, 'member_image');
         }else{
           $image_extension = explode('.', $team->member_image);
-          $new_image_name = $request['member_name'] . '-' . $request['member_surname'] . '.' . $image_extension[1];
+          $new_image_name = str_slug($request['member_name'] . ' ' . $request['member_surname']) . '.' . $image_extension[1];
           rename(public_path('img/' . $team->member_image), public_path('img/' . $new_image_name));
           $team->member_image = $new_image_name;
         }
@@ -123,7 +134,7 @@ class TeamController extends Controller
         if(file_exists(public_path('img/' . $team->member_image))){
           unlink(public_path('img/' . $team->member_image));
         }
-        
+
         return redirect('/admin/team');
     }
 

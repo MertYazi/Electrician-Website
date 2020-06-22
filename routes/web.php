@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'AppearanceController@index');
 Route::get('/about', 'AppearanceController@about');
 Route::get('/contact', 'AppearanceController@contact');
 Route::post('/contact', 'AppearanceController@send_contact');
 Route::get('/references', 'AppearanceController@references');
 Route::get('/services', 'AppearanceController@services');
-Route::get('/individual-services', 'AppearanceController@individual_services');
-
-Auth::routes();
+Route::get('/services/{service}', 'AppearanceController@individual_services');
 
 Route::resource('admin/site', 'SiteController')->middleware('auth');
 Route::resource('admin/services', 'ServiceController')->middleware('auth');

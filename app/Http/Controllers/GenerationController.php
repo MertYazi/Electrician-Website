@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Generation;
+use App\Site;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -16,8 +18,11 @@ class GenerationController extends Controller
      */
     public function index()
     {
-        $generation = Generation::findOrFail(1);
-        return view('admin.generations.admin_generations', compact('generation'));
+        $generation = Generation::first();
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.generations.admin_generations', compact('generation', 'site', 'contact'));
     }
 
     /**
@@ -27,7 +32,7 @@ class GenerationController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/admin/generations');
     }
 
     /**
@@ -38,7 +43,7 @@ class GenerationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/admin/generations');
     }
 
     /**
@@ -49,7 +54,7 @@ class GenerationController extends Controller
      */
     public function show(Generation $generation)
     {
-        //
+        return redirect('/admin/generations');
     }
 
     /**
@@ -60,7 +65,10 @@ class GenerationController extends Controller
      */
     public function edit(Generation $generation)
     {
-        return view('admin.generations.admin_generations_edit', compact('generation'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.generations.admin_generations_edit', compact('generation', 'site', 'contact'));
     }
 
     /**
@@ -80,7 +88,7 @@ class GenerationController extends Controller
         }
         $generation->generation_origin=$request['generation_origin'];
         $generation->save();
-        
+
         return redirect('/admin/generations');
     }
 
@@ -92,13 +100,13 @@ class GenerationController extends Controller
      */
     public function destroy(Generation $generation)
     {
-        //
+        return redirect('/admin/generations');
     }
 
     public function validate_data(Request $request){
 
         $request->validate([
-          'generation_text' => 'required|between:2,255',
+          'generation_text' => 'required|min:2',
           'generation_origin' => 'required|size:4',
           'generation_caption' => 'required|between:2,255',
           'generation_image' => 'image',

@@ -5,7 +5,7 @@
 <div class="container-fluid px-0 py-0">
 	<div class="carousel-inner">
 		<div class="carousel-item active">
-			<img class="d-block w-100 cover-image" src="img/services.jpg">
+			<img class="d-block w-100 cover-image" src="{{ asset('img/' . $service->service_cover) }}">
 		</div>
 	</div>
 </div>
@@ -14,25 +14,23 @@
 	<div class="row pt-3">
 		<div class="col-md-4 col-lg-4">
 
-			<h4 class="px-2 pb-2">Detailed Services</h4>
+			<h3 class="px-2 pb-2 text-orange">Detailed Services</h3>
 			<ul class="list-group list-group-flush pr-4">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
+        @foreach($all_services as $single_service)
+          @if($single_service->service_importance == 1)
+  			     <li class="list-group-item list-group-item-action border-0 rounded {{ Request::path() === 'services/' . $single_service->service_slug ? 'bg-orange text-white-50' : '' }}">
+							 <a class="nav-link text-dark" href="/services/{{ $single_service->service_slug }}">{{ $single_service->service_title }}</a></li>
+          @endif
+        @endforeach
 			</ul>
 
-			<h4 class="pt-5 px-2 pb-2">Other Services</h4>
-			<ul class="list-group list-group-flush pr-4">
-			  <li class="list-group-item">Cras justo odio</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
-			  <li class="list-group-item">Vestibulum at eros</li>
-			  <li class="list-group-item">Dapibus ac facilisis in</li>
-			  <li class="list-group-item">Morbi leo risus</li>
-			  <li class="list-group-item">Porta ac consectetur ac</li>
+			<h3 class="pt-5 px-2 pb-2 text-orange">Other Services</h3>
+			<ul class="list-group list-group-flush pr-4 pb-5">
+        @foreach($all_services as $single_service)
+          @if($single_service->service_importance == 0)
+			       <li class="list-group-item border-0 pl-4">{{ $single_service->service_title }}</li>
+          @endif
+			  @endforeach
 			</ul>
 
 		</div>
@@ -40,24 +38,18 @@
 		<div class="col-md-8 col-lg-8 pb-5">
 
 			<div class="container-fluid px-0">
-				<h3 class="display-5">Plug Change Service</h3>
-				<p class="lead">We guarantee that you will be satisfied with our services.</p>
-				<img class="d-block w-100 service-image" src="img/plug-chance.jpg">
-				<h3 class="display-6 pt-5">About Plug Change Service</h3>
-				<p class="lead pt-1">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
+				<h3 class="display-5 text-orange">{{ $service->service_title }}</h3>
+				<p class="lead">{{ $service->service_description }}</p>
+				<div class="row justify-content-center">
+					<div class="col-md-10 pt-3">
+						<img class="d-block w-100 service-image rounded-service" src="{{ asset('img/' . $service->service_image) }}">
+					</div>
+				</div>
+				<div class="row">
+					<p class="lead pt-5">
+						{{ $service->service_text }}
+					</p>
+				</div>
 			</div>
 
 		</div>
