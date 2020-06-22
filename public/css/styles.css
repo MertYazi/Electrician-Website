@@ -10,10 +10,33 @@
 .profile-container {
   position: relative;
 }
-.profile-image {
-  display: block;
-  width: 100%;
-  height: auto;
+@media (max-width: 767.98px) {
+	.profile-image, .reference-image, .about-image {
+	  display: block;
+	  width: 100%;
+		height: 45vw;
+		object-fit: cover;
+	}
+}
+@media (min-width: 767.98px) {
+	.profile-image {
+	  display: block;
+	  width: 100%;
+		height: 25vw;
+		object-fit: cover;
+	}
+	.reference-image {
+	  display: block;
+	  width: 100%;
+		height: 15vw;
+		object-fit: cover;
+	}
+	.about-image {
+	  display: block;
+	  width: 100%;
+		height: 20vw;
+		object-fit: cover;
+	}
 }
 .profile-overlay {
   position: absolute;
@@ -77,14 +100,15 @@
   height: 100vh;
 }
 .carousel-text {
-  height: 20vh;
+  height: 25vh;
 }
 .cover-image {
-  height: 50vh;
+  height: 60vh;
 }
 .list-group .list-group-item {
 	padding-left: 8px;
 	padding-right: 0px;
+	color: #343a40;
 }
 .services-body .card .card-body {
 	padding-top: 12px;
@@ -109,7 +133,7 @@
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #abaaad;
+  background-color: #cc8500;
   color: white;
   cursor: pointer;
   padding: 10px;
@@ -186,4 +210,38 @@
   .modal-content {
     width: 100%;
   }
+}
+@media (max-width: 767.98px) {
+	.card-img-top {
+	    width: 100%;
+	    height: 45vw;
+	    object-fit: cover;
+			border-radius: 10px;
+	}
+}
+@media (min-width: 767.98px) {
+	.card-img-top {
+	    width: 100%;
+	    height: 25vw;
+	    object-fit: cover;
+			border-radius: 10px;
+	}
+}
+.rounded-generation {
+    border-radius: 30px;
+}
+.rounded-team {
+    border-radius: 20px;
+}
+.rounded-reference {
+    border-radius: 60px;
+}
+.rounded-service {
+	border-radius: 15px;
+}
+.text-orange {
+	color: #cc8500 !important;
+}
+.bg-orange {
+	background-color: #cc8500 !important;
 }

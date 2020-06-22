@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Site;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -16,8 +17,10 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $site = Site::findOrFail(1);
-        return view('admin.site.admin_site', compact('site'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.site.admin_site', compact('site', 'contact'));
     }
 
     /**
@@ -27,7 +30,7 @@ class SiteController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/admin/site');
     }
 
     /**
@@ -38,7 +41,7 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/admin/site');
     }
 
     /**
@@ -49,7 +52,7 @@ class SiteController extends Controller
      */
     public function show(Site $site)
     {
-        //
+        return redirect('/admin/site');
     }
 
     /**
@@ -60,7 +63,9 @@ class SiteController extends Controller
      */
     public function edit(Site $site)
     {
-        return view('admin.site.admin_site_edit', compact('site'));
+        $contact = Contact::first();
+
+        return view('admin.site.admin_site_edit', compact('site', 'contact'));
     }
 
     /**
@@ -94,7 +99,7 @@ class SiteController extends Controller
         }
         $site->team_caption = $request['team_caption'];
         $site->save();
-        
+
         return redirect('/admin/site');
     }
 
@@ -106,7 +111,7 @@ class SiteController extends Controller
      */
     public function destroy(Site $site)
     {
-        //
+        return redirect('/admin/site');
     }
 
     public function validate_data(Request $request){
@@ -114,7 +119,7 @@ class SiteController extends Controller
         $request->validate([
           'site_name' => 'required|between:2,255',
           'site_year' => 'required|size:4',
-          'site_description' => 'required|between:2,255',
+          'site_description' => 'required|min:2',
           'references_caption' => 'required|between:2,255',
           'about_caption' => 'required|between:2,255',
           'contact_caption' => 'required|between:2,255',

@@ -10,5 +10,5 @@ Go to Site
 @endcomponent
 
 From: {{ $email }},<br>
-To: {{ config('app.name') }}
+To: {{ config('app.name') }} Team
 @endcomponent

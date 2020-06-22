@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Slide;
+use App\Site;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -17,7 +19,10 @@ class SlideController extends Controller
     public function index()
     {
         $slides = Slide::all();
-        return view('admin.slides.admin_slides', compact('slides'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.slides.admin_slides', compact('slides', 'site', 'contact'));
     }
 
     /**
@@ -27,7 +32,10 @@ class SlideController extends Controller
      */
     public function create()
     {
-        return view('admin.slides.admin_slides_create');
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.slides.admin_slides_create', compact('site', 'contact'));
     }
 
     /**
@@ -48,7 +56,7 @@ class SlideController extends Controller
             return redirect()->back()->withInput()->withErrors(['slide_exist' => 'The slide already exist!']);
           }
         }
-        $slide_name = str_replace(' ', '-', $request['slide_caption']);
+        $slide_name = str_slug($request['slide_caption']);
         $slide->slide_image = $slide_name . '.' . $request['slide_image']->extension();
         $this->handle_image($request, $slide, 'slide_image');
         $slide->save();
@@ -64,7 +72,7 @@ class SlideController extends Controller
      */
     public function show(Slide $slide)
     {
-        //
+        return redirect('/admin/slides');
     }
 
     /**
@@ -75,7 +83,10 @@ class SlideController extends Controller
      */
     public function edit(Slide $slide)
     {
-        return view('admin.slides.admin_slides_edit', compact('slide'));
+        $site = Site::first();
+        $contact = Contact::first();
+
+        return view('admin.slides.admin_slides_edit', compact('slide', 'site', 'contact'));
     }
 
     /**
@@ -93,7 +104,7 @@ class SlideController extends Controller
         if($request['slide_image'] != null){
           $this->handle_image($request, $slide, 'slide_image');
         }else{
-          $slide_name = str_replace(' ', '-', $request['slide_caption']);
+          $slide_name = str_slug($request['slide_caption']);
           $image_extension = explode('.', $slide->slide_image);
           $new_image_name = $slide_name . '.' . $image_extension[1];
           rename(public_path('img/' . $slide->slide_image), public_path('img/' . $new_image_name));
@@ -124,7 +135,7 @@ class SlideController extends Controller
 
         $request->validate([
           'slide_caption' => 'required|between:2,255',
-          'slide_text' => 'required|between:2,255',
+          'slide_text' => 'required|min:2',
           'slide_image' => 'image',
         ]);
     }

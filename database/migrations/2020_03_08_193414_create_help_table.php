@@ -15,7 +15,7 @@ class CreateHelpTable extends Migration
     {
         Schema::create('helps', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('help_caption');
+            $table->string('help_caption');
             $table->string('help_keywords');
             $table->string('decide_image');
             $table->text('decide_text');
